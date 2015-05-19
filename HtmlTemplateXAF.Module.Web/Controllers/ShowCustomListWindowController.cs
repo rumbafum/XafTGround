@@ -1,0 +1,136 @@
+using System;
+using System.Linq;
+using System.Text;
+using DevExpress.ExpressApp;
+using DevExpress.Data.Filtering;
+using System.Collections.Generic;
+using DevExpress.Persistent.Base;
+using DevExpress.ExpressApp.Utils;
+using DevExpress.ExpressApp.Layout;
+using DevExpress.ExpressApp.Actions;
+using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Templates;
+using DevExpress.Persistent.Validation;
+using DevExpress.ExpressApp.SystemModule;
+using DevExpress.ExpressApp.Model.NodeGenerators;
+using HtmlTemplateXAF.Module.BusinessObjects;
+using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Web.Templates.ActionContainers;
+using DevExpress.ExpressApp.Web;
+using DevExpress.ExpressApp.Web.Templates;
+using DevExpress.Web;
+
+namespace HtmlTemplateXAF.Module.Web.Controllers
+{
+    // For more typical usage scenarios, be sure to check out http://documentation.devexpress.com/#Xaf/clsDevExpressExpressAppWindowControllertopic.
+    public partial class ShowCustomListWindowController : WindowController
+    {
+        Type type = typeof(WorkType);
+        IModelClass modelClass;
+        IModelListView modelListView;
+        ShowNavigationItemController showNavigationItemController;
+
+        public ShowCustomListWindowController()
+        {
+            TargetWindowType = WindowType.Main;
+            InitializeComponent();
+            RegisterActions(components);
+
+            DevExpress.ExpressApp.Actions.SimpleAction action = new DevExpress.ExpressApp.Actions.SimpleAction();
+            action.Id = "ShowCustomObject";
+            action.Caption = "Show custom object";
+            action.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(action_Execute);
+            action.Executed += new EventHandler<DevExpress.ExpressApp.Actions.ActionBaseEventArgs>(action_Executed);
+            RegisterActions(action);
+        }
+
+        private void action_Executed(object sender, DevExpress.ExpressApp.Actions.ActionBaseEventArgs e)
+        {
+            CleanUp();
+        }
+
+        private void action_Execute(object sender, DevExpress.ExpressApp.Actions.SimpleActionExecuteEventArgs e)
+        {
+            //CreateTestListView();
+            //showNavigationItemController.RecreateNavigationItems();
+        }
+
+        private void CreateTestListView()
+        {
+            modelClass = Application.Model.BOModel.AddNode<IModelClass>("__ForDemoPursposesOnly__Class");
+            modelClass.SetValue<ITypeInfo>("TypeInfo", XafTypesInfo.Instance.FindTypeInfo(type));
+            modelListView = Application.Model.Views.AddNode<IModelListView>("__ForDemoPursposesOnly__ListView");
+            IModelColumn column1 = modelListView.Columns.AddNode<IModelColumn>("__ForDemoPursposesOnly__Name");
+            column1.PropertyName = "Name";
+            IModelColumn column2 = modelListView.Columns.AddNode<IModelColumn>("__ForDemoPursposesOnly__Active");
+            column2.PropertyName = "Active";
+            modelClass.Caption = "LALA";
+            modelListView.ModelClass = modelClass;
+        }
+
+        private void CleanUp()
+        {
+            modelClass.Remove();
+            modelListView.Remove();
+        }
+
+        void WindowProcessActionContainer(object sender, ProcessActionContainerEventArgs e)
+        {
+        }
+
+        void showNavigationItemController_NavigationItemCreated(object sender, NavigationItemCreatedEventArgs e)
+        {
+            ChoiceActionItem navigationItem = e.NavigationItem;
+
+            IModelList<IModelView> modelViews = Application.Model.Views;
+            IModelView myViewNode = modelViews["__ForDemoPursposesOnly__ListView"];
+            if (myViewNode == null)
+                return;
+
+            if (!string.IsNullOrEmpty(navigationItem.Model.Id) && (navigationItem.Model.Id.Contains("WorkType")))
+            {
+                ViewShortcut shortcut = new ViewShortcut(typeof(WorkType), "", "__ForDemoPursposesOnly__ListView");
+                ChoiceActionItem newItem = new ChoiceActionItem(
+                    "__ForDemoPursposesOnly__ListView", "WORKTYPE LALA", shortcut) { ImageName = "Navigation_Item_Report" };
+                navigationItem.Items.Add(newItem);
+            }
+        }
+
+        void showNavigationItemController_CustomShowNavigationItem(object sender, CustomShowNavigationItemEventArgs e)
+        {
+            ChoiceActionItem selectedNavigationItem = e.ActionArguments.SelectedChoiceActionItem;
+            IModelList<IModelView> modelViews = Application.Model.Views;
+            IModelView myViewNode = modelViews[selectedNavigationItem.Model.Id];
+            if (myViewNode == null)
+                CreateTestListView();
+        }
+
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            Window.ProcessActionContainer += WindowProcessActionContainer;
+        }
+
+        protected override void OnDeactivated()
+        {
+            base.OnDeactivated();
+            Window.ProcessActionContainer -= WindowProcessActionContainer;
+        }
+
+        protected override void OnFrameAssigned()
+        {
+            base.OnFrameAssigned();
+            //showNavigationItemController =
+            //            Frame.GetController<ShowNavigationItemController>();
+            //if (showNavigationItemController != null)
+            //{
+            //    showNavigationItemController.NavigationItemCreated +=
+            //        new EventHandler<NavigationItemCreatedEventArgs>(showNavigationItemController_NavigationItemCreated);
+            //    showNavigationItemController.CustomShowNavigationItem +=
+            //        new EventHandler<CustomShowNavigationItemEventArgs>(showNavigationItemController_CustomShowNavigationItem);
+            //}
+        }
+
+    }
+}

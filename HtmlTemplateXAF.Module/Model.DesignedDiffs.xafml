@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" ?>
+<Application Title="HtmlTemplateXAF" Logo="ExpressAppLogo" >
+  <NavigationItems>
+    <Item Id="Home" Index="0" ImageName="" ViewId="MainDashboardView" Caption="Home" IsNewNode="True">
+      <Items IsNewNode="True">
+        <Item Id="Dashboard" ViewId="MainDashboardView" ImageName="" Index="0" IsNewNode="True" />
+      </Items>
+    </Item>
+  </NavigationItems>
+</Application>
+

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <ActionToContainerMapping>
+      <ActionContainer Id="View">
+        <ActionLink ActionId="ChangeVariant" IsNewNode="True" Removed="True" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <NavigationItems GenerateRelatedViewVariantsGroup="True">
+    <Items>
+      <Item Id="Home" Index="0" ImageName="" Caption="Home" ViewId="" Removed="True">
+        <Items IsNewNode="True">
+          <Item Id="Dashboard" ImageName="" Index="0" ViewId="" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Default">
+        <Items>
+          <Item Id="Dashboard" ImageName="Action_EditModel" Index="0" ViewId="MainDashboardView" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SchedulerAspNetModule" Version="14.2.6.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="14.2.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemAspNetModule" Version="14.2.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="14.2.6.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="EventBO_ListView" EditorTypeName="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor">
+      <Variants Current="TheListView">
+        <Variant Id="TheListView" ViewID="EventBO_ListView" Index="0" IsNewNode="True" />
+        <Variant Id="TheCalendarView" ViewID="EventBO_ListView_Scheduler" Caption="Calendário" Index="1" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <ListView Id="EventBO_ListView_Scheduler" ClassName="HtmlTemplateXAF.Module.BusinessObjects.EventBO" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RecurrenceInfoXml" PropertyName="RecurrenceInfoXml" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RecurrencePattern" PropertyName="RecurrencePattern" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ReminderTime" PropertyName="ReminderTime" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Status" PropertyName="Status" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="BeginDate" PropertyName="BeginDate" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="EndDate" PropertyName="EndDate" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="CreateDate" PropertyName="CreateDate" Width="70" Index="4" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DashboardView Id="MainDashboardView" Caption="Dashboard" IsNewNode="True">
+      <Items IsNewNode="True">
+        <WebCustomUserControlViewItem Id="DashboardMain" UserControlPath="Controls/DashboardWebUserControl.ascx" Caption="Dashboard" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="DashboardMain" ViewItem="DashboardMain" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DashboardView>
+  </Views>
+</Application>

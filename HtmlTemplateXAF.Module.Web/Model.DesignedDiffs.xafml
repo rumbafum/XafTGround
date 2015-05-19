@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemAspNetModule" Version="14.1.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="14.1.6.0" IsNewNode="True" />
+  </SchemaModules>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Default">
+        <Items>
+          <Item Id="Dashboard" ViewId="MainDashboardView" ImageName="" Index="0" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views>
+    <DetailView Id="Deliverable_DetailView">
+      <Items>
+        <PropertyEditor Id="Client" Index="0" />
+        <PropertyEditor Id="Name" Index="1" />
+        <DeliverableTemplateWebModelViewItem Id="TemplateText" Index="2" Caption="Template" IsNewNode="True" />
+        <PropertyEditor Id="Template" PropertyName="Template" PropertyEditorType="HtmlTemplateXAF.Module.Web.Editors.DeliverableHtmlPropertyEditor" IsNewNode="True" Removed="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Deliverable">
+              <TabbedGroup Id="TemplateContainer" Caption="Template" Index="2" IsNewNode="True">
+                <LayoutGroup Id="@67944b92-2e52-4791-8ade-c0138c43d149" IsNewNode="True">
+                  <LayoutItem Id="@7cee58c1-1984-4d21-b3b1-da708cc21c73" ViewItem="TemplateText" IsNewNode="True" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <LayoutItem Id="@0dd646a5-c810-4228-bdee-c6d050aa6683" ViewItem="Client" Index="4" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="WorkType_DetailView">
+      <Items>
+        <PropertyEditor Id="TemplateText" PropertyEditorType="HtmlTemplateXAF.Module.Web.Editors.HtmlPropertyEditor" />
+      </Items>
+    </DetailView>
+    <DashboardView Id="MyListsDashboardView" ImageName="" Caption="My Lists">
+    </DashboardView>
+    <DashboardView Id="MainDashboardView" Caption="Dashboard">
+      <Items>
+        <WebCustomUserControlViewItem Id="DashboardMain" UserControlPath="Controls/DashboardWebUserControl.ascx" Caption="Main" Index="0" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" ShowCaption="False" Direction="Vertical" Index="0" RelativeSize="100" IsNewNode="True">
+          <LayoutItem Id="DashboardMain" ShowCaption="False" ViewItem="DashboardMain" SizeConstraintsType="Custom" MinSize="70, 40" MaxSize="0, 0" Index="0" RelativeSize="100" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DashboardView>
+  </Views>
+</Application>
