@@ -56,9 +56,6 @@
     <Reference Include="DevExpress.Printing.v14.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v14.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="DevExpress.ExpressApp.v14.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
