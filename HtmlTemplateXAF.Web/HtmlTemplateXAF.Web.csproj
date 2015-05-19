@@ -53,63 +53,140 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.HtmlPropertyEditor.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Scheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Scheduler.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Validation.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Xpo.v14.2">
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Data.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v14.2.Core">
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.ConditionalAppearance.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v14.2">
+    <Reference Include="DevExpress.ExpressApp.HtmlPropertyEditor.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.HtmlPropertyEditor.Web.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Images.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Images.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Images.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Scheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Scheduler.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Web.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Scheduler.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Scheduler.Web.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v14.2">
+    <Reference Include="DevExpress.ExpressApp.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Validation.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Validation.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v14.2">
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\Lib\DevExpress.ExpressApp.ViewVariantsModule.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Web.ASPxSpellChecker.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Web.ASPxThemes.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Web.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxTreeList.v14.2">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\Lib\DevExpress.ExpressApp.Xpo.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v14.2.Core">
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Office.v14.2.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v14.2.Core">
+    <Reference Include="DevExpress.Persistent.Base.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Persistent.Base.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Web.v14.2">
+    <Reference Include="DevExpress.Persistent.BaseImpl.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Persistent.BaseImpl.v14.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v14.2.Web">
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Printing.v14.2.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v14.2">
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.RichEdit.v14.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.ASPxHtmlEditor.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxScheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.ASPxScheduler.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.ASPxSpellChecker.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.ASPxThemes.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.ASPxTreeList.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Web.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Xpo.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.2.Extensions, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Xpo.v14.2.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.Xpo.v14.2.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.XtraScheduler.v14.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DevExpress.XtraScheduler.v14.2.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
