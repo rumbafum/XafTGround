@@ -2,6 +2,7 @@
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using HtmlTemplateXAF.Module.BusinessObjects.Converters;
+using HtmlTemplateXAF.Module.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,8 @@ namespace HtmlTemplateXAF.Module.BusinessObjects
             base.AfterConstruction();
             BeginDate = DateTimeOffset.Now;
             EndDate = DateTimeOffset.Now;
+
+            Name = DateTimeHelper.Now.ToString();
         }
 
         protected override void OnSaving()

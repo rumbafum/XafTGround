@@ -136,6 +136,7 @@
     <Compile Include="Editors\CustomUserControlViewItem.cs" />
     <Compile Include="Editors\DeliveralbelTemplateModelViewItem.cs" />
     <Compile Include="Helpers\CurrentPageHelper.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>

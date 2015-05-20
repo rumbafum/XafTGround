@@ -50,7 +50,25 @@ public partial class Default : BaseXafPage, ICallbackFrameTemplate
             }
             catch (Exception ex)
             {
-                SkillsGlobalSettings.Instance.DefaultTimeZone = TimeZoneInfo.Local;
+                TimeZoneInfo tzInfo = null;
+                TimeSpan ts = new TimeSpan(0, -SkillsGlobalSettings.Instance.ClientOffset, 0);
+                List<TimeZoneInfo> withSameTime = new List<TimeZoneInfo>();
+                string clientZoneName = Request.Cookies["skillsTimezone"].Value;
+                foreach(TimeZoneInfo tzi in TimeZoneInfo.GetSystemTimeZones())
+                {
+                    if (tzi.BaseUtcOffset.TotalMinutes == ts.TotalMinutes)
+                        withSameTime.Add(tzi);
+                }
+                foreach (TimeZoneInfo tzi in withSameTime)
+                {
+                    string[] splited = tzi.DisplayName.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var s in splited)
+                    {
+                        if (clientZoneName.Contains(s))
+                            tzInfo = tzi;
+                    }
+                }
+                SkillsGlobalSettings.Instance.DefaultTimeZone = tzInfo != null ? tzInfo : (withSameTime.Count > 0 ? withSameTime[0] : TimeZoneInfo.Local);
             }
         }
 
