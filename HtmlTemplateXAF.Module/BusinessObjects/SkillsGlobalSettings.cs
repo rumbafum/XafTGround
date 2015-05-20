@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeZoneMapper.TZMappers;
 
 namespace HtmlTemplateXAF.Module.BusinessObjects
 {
@@ -33,6 +34,8 @@ namespace HtmlTemplateXAF.Module.BusinessObjects
             }
         }
 
+
+
         TimeZoneInfo tzInfo = null;
         public TimeZoneInfo DefaultTimeZone
         {
@@ -53,5 +56,7 @@ namespace HtmlTemplateXAF.Module.BusinessObjects
         }
 
         public CultureInfo[] Cultures { get; set; }
+
+        public ITZMapper TimeZoneDB { get; set; }
     }
 }

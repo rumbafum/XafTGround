@@ -120,6 +120,10 @@
       <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TimeZoneMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DotNetTimeZoneInfo\TimeZoneMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Converters\DateTimeOffsetConverter.cs" />

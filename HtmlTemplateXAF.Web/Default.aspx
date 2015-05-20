@@ -29,8 +29,33 @@
     <script type="text/javascript" src="../Scripts/trackContainerDataPlugin.js"></script>
     <script type="text/javascript" src="../Scripts/skill.global.js"></script>
     <script type="text/javascript" src="../Scripts/getData.js"></script>
+    <script type="text/javascript" src="../Scripts/js.cookie.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 </head>
 <body class="VerticalTemplate">
+    <script type="text/javascript">
+        var timezone = jstz.determine();
+        var timezone_cookie = "skillsTimezoneOffset";
+        var timezoneName_cookie = "skillsTimezone";
+
+        if (Cookies.get(timezone_cookie) === undefined) {
+            Cookies.set(timezone_cookie, new Date().getTimezoneOffset());
+            Cookies.set(timezoneName_cookie, timezone.name());
+        }
+        else {
+            var storedOffset = parseInt(Cookies.get(timezone_cookie));
+            var currentOffset = new Date().getTimezoneOffset();
+            if (storedOffset !== currentOffset) {
+                Cookies.set(timezone_cookie, new Date().getTimezoneOffset());
+            }
+            var storedTimezone = Cookies.get(timezoneName_cookie);
+            var currentTimezone = timezone.name();
+            if (storedTimezone !== currentTimezone) {
+                Cookies.set(timezoneName_cookie, currentTimezone);
+            }
+        }
+
+    </script>
     <form id="form2" runat="server">
     <cc3:XafUpdatePanel ID="UPPopupWindowControl" runat="server">
         <cc4:XafPopupWindowControl runat="server" ID="PopupWindowControl" />
@@ -61,8 +86,5 @@
 								</cc5:ASPxCallbackPanel>
     <div runat="server" id="Content" />
     </form>
-    <script type="text/javascript">
-        Skill.Global.setClientOffset();
-    </script>
 </body>
 </html>

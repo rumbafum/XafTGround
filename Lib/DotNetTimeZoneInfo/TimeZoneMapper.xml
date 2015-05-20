@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeZoneMapper</name>
+    </assembly>
+    <members>
+        <member name="T:TimeZoneMapper.TimeZoneMap">
+            <summary>
+                Provides easy access to different "built-in" types of <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/>s.
+            </summary>
+            <remarks>
+                The static properties and/or methods on this class are mostly convenience methods/properties; if you need
+                more control (such as using a specific uri, cache TTL or timeout value for the 
+                <see cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/> or other options not provided by the "built-in" TZMappers/resources
+                returned here) then you will need to instantiate your own instance (and maybe even implement your own
+                <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/>).
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TimeZoneMap.CreateOnlineWithSpecificFallbackValuesTZMapper(TimeZoneMapper.TZMappers.ITZMapper)">
+            <summary>
+                Creates a <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> that tries to use the online resource and, when unreachable or otherwise
+                problematic, uses the specified <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> as fallback.
+            </summary>
+            <param name="fallbacktzmapper">
+                The <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> to use when the default <see cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/> fails for any
+                reason.
+            </param>
+            <returns>
+                Returns the default <see cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/> unless it experiences any trouble; in that case the
+                specified fallback <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> will be returned.
+            </returns>
+            <seealso cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/>
+        </member>
+        <member name="M:TimeZoneMapper.TimeZoneMap.CreateOnlineWithSpecificFallbackValuesTZMapper(System.Uri,TimeZoneMapper.TZMappers.ITZMapper)">
+            <summary>
+                Creates a <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> that tries to use the online resource and, when unreachable or otherwise
+                problematic, uses the specified <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> as fallback.
+            </summary>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <param name="fallbacktzmapper">
+                The <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> to use when the default <see cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/> fails for any
+                reason.
+            </param>
+            <returns>
+                Returns the default <see cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/> unless it experiences any trouble; in that case the
+                specified fallback <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> will be returned.
+            </returns>
+            <seealso cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/>
+        </member>
+        <member name="P:TimeZoneMapper.TimeZoneMap.DefaultValuesTZMapper">
+            <summary>
+                Gets a <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> that uses a built-in (and thus, possibly outdated) resource.
+            </summary>
+            <remarks>
+                <para>
+                    The mappings are based on the built-in data. The specific version of the resource can be retrieved
+                    by examining the <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZVersion"/> and <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZIDVersion"/> (or
+                    <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.Version"/>)
+                    properties.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper">
+            <summary>
+                Gets a <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> that uses a online (and thus, possibly 'unreachable') resource.
+            </summary>
+            <remarks>
+                <para>
+                    The mappings are retrieved from the online resource a single time (upon first usage) and used from
+                    there on. Consider that, between different runs of the application, different values may be
+                    returned when the online resource changes. The specific version of the resource can be retrieved by
+                    examining the <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZVersion"/> and <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZIDVersion"/> (or 
+                    <see cref="P:TimeZoneMapper.TZMappers.ITZMapper.Version"/>)
+                    properties.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TimeZoneMap.OnlineWithFallbackValuesTZMapper">
+            <summary>
+                Gets a <see cref="T:TimeZoneMapper.TZMappers.ITZMapper"/> that tries to use the online resource and, when unreachable or otherwise
+                problematic, uses the built-in resource as fallback.
+            </summary>
+            <remarks>
+                <para>
+                    Consider that, between different runs of the application, different values may be returned when the
+                    online resource changes or the online resource is out of sync with the current built-in resource
+                    and unreachable.
+                </para>
+            </remarks>
+            <seealso cref="P:TimeZoneMapper.TimeZoneMap.OnlineValuesTZMapper"/>
+        </member>
+        <member name="T:TimeZoneMapper.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:TimeZoneMapper.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:TimeZoneMapper.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:TimeZoneMapper.Properties.Resources.windowsZones">
+             <summary>
+               Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+            &lt;!DOCTYPE supplementalData SYSTEM &quot;../../common/dtd/ldmlSupplemental.dtd&quot;&gt;
+            &lt;!--
+            Copyright © 1991-2013 Unicode, Inc.
+            CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
+            For terms of use, see http://www.unicode.org/copyright.html
+            --&gt;
+            
+            &lt;supplementalData&gt;
+            	&lt;version number=&quot;$Revision$&quot;/&gt;
+            	&lt;generation date=&quot;$Date$&quot;/&gt;
+            
+            	&lt;windowsZones&gt;
+            		&lt;mapTimezones otherVersion=&quot;7de0000&quot; typeVersion=&quot;2013i&quot;&gt;
+            
+            			&lt;!-- (UTC-12:00) Internatio [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.BaseTZMapper">
+            <summary>
+                Provides a base class for TimeZoneMapper objects.
+            </summary>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.BaseTZMapper.TryGetTimeZone(System.String)">
+            <summary>
+            Retrieves a TimeZone by it's Id, handling exceptions and returning null instead for invalid / not found Id's.
+            </summary>
+            <param name="id">The time zone identifier, which corresponds to the Id property.</param>
+            <returns>Returns the TimeZone when found, null otherwise.</returns>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.BaseTZMapper.MapTZID(System.String)">
+            <summary>
+                Maps a TimeZone ID (e.g. "Europe/Amsterdam") to a corresponding TimeZoneInfo object.
+            </summary>
+            <param name="tzid">The TimeZone ID (e.g. "Europe/Amsterdam").</param>
+            <returns>Returns a .Net BCL <see cref="T:System.TimeZoneInfo"/> object corresponding to the TimeZone ID.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the specified TimeZone ID is not found.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when the specified TimeZone ID is null.</exception>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.BaseTZMapper.GetAvailableTZIDs">
+            <summary>
+                Builds an array of available TimeZone ID's and returns these as an array.
+            </summary>
+            <returns>Returns an array of all available ('known') TimeZone ID's.</returns>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.BaseTZMapper.GetAvailableTimeZones">
+            <summary>
+                Builds an array of available <see cref="T:System.TimeZoneInfo"/> objects that the mapper can return.
+            </summary>
+            <returns>Returns an array of available <see cref="T:System.TimeZoneInfo"/> objects that the mapper can return.</returns>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.BaseTZMapper.TZIDVersion">
+            <summary>
+            Gets the TimeZoneID version part of the resource currently in use.
+            </summary>
+            <remarks>This value corresponds to the &quot;typeVersion&quot; attribute of the resource data.</remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.BaseTZMapper.TZVersion">
+            <summary>
+            Gets the TimeZoneInfo version part of the resource currently in use.
+            </summary>
+            <remarks>This value corresponds to the &quot;otherVersion&quot; attribute of the resource data.</remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.BaseTZMapper.Version">
+            <summary>
+            Gets the version of the resource currently in use.
+            </summary>
+            <remarks>This value is a composite of "<see cref="P:TimeZoneMapper.TZMappers.BaseTZMapper.TZIDVersion"/>.<see cref="P:TimeZoneMapper.TZMappers.BaseTZMapper.TZVersion"/>".</remarks>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.CustomValuesTZMapper">
+            <summary>
+                Provides TimeZoneID mapping based on custom values provided by a CLDR xml file.
+            </summary>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.ITZMapper">
+            <summary>
+            Provides the base interface for implementation of a TimeZoneMapper class.
+            </summary>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.ITZMapper.GetAvailableTimeZones">
+            <summary>
+                Returns an array of available <see cref="T:System.TimeZoneInfo"/> objects that the mapper can return.
+            </summary>
+            <returns>Returns an array of available <see cref="T:System.TimeZoneInfo"/> objects that the mapper can return.</returns>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.ITZMapper.GetAvailableTZIDs">
+            <summary>
+                Returns an array of available TimeZone ID's and returns these as an array.
+            </summary>
+            <returns>Returns an array of all available ('known') TimeZone ID's.</returns>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.ITZMapper.MapTZID(System.String)">
+            <summary>
+                Maps a TimeZone ID (e.g. "Europe/Amsterdam") to a corresponding TimeZoneInfo object.
+            </summary>
+            <param name="tzid">The TimeZone ID (e.g. "Europe/Amsterdam").</param>
+            <returns>Returns a .Net BCL <see cref="T:System.TimeZoneInfo"/> object corresponding to the TimeZone ID.</returns>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.ITZMapper.TZIDVersion">
+            <summary>
+            Gets the TimeZoneID version part of the resource currently in use.
+            </summary>
+            <remarks>This value corresponds to the &quot;typeVersion&quot; attribute of the resource data.</remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.ITZMapper.TZVersion">
+            <summary>
+            Gets the TimeZoneInfo version part of the resource currently in use.
+            </summary>
+            <remarks>This value corresponds to the &quot;otherVersion&quot; attribute of the resource data.</remarks>
+        </member>
+        <member name="P:TimeZoneMapper.TZMappers.ITZMapper.Version">
+            <summary>
+            Gets the version of the resource currently in use.
+            </summary>
+            <remarks>This value is a composite of "<see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZIDVersion"/>.<see cref="P:TimeZoneMapper.TZMappers.ITZMapper.TZVersion"/>".</remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.CustomValuesTZMapper.#ctor(System.String)">
+            <summary>
+                Initializes a CustomValuesTZMapper with custom CLDR data in XML format.
+            </summary>
+            <param name="cldrxml">A string containing an XML document with CLDR data.</param>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.CustomValuesTZMapper.#ctor(System.String,System.Text.Encoding)">
+            <summary>
+                Initializes a CustomValuesTZMapper with custom CLDR data in XML format.
+            </summary>
+            <param name="path">Path to an XML file containing CLDR data.</param>
+            <param name="encoding">The encoding applied to the contents of the file.</param>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.CustomValuesTZMapper.#ctor(System.IO.Stream)">
+            <summary>
+                Initializes a CustomValuesTZMapper with custom CLDR data in XML format.
+            </summary>
+            <param name="cldrstream">The stream to be read.</param>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.DefaultValuesTZMapper">
+            <summary>
+                Provides TimeZoneID mapping based on a built-in (&quot;static&quot;) resource.
+            </summary>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper">
+            <summary>
+            Provides TimeZoneID mapping based on a current (&quot;dynamic&quot;) resource.
+            </summary>
+        </member>
+        <member name="F:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTRESOURCEURL">
+            <summary>
+            Default URL used for <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/>
+            </summary>
+        </member>
+        <member name="F:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTTIMEOUTMS">
+            <summary>
+            Default timeout for HTTP requests.
+            </summary>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with default timeout of 5 seconds and 
+            <see cref="F:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTRESOURCEURL"/> as resourceURL.
+            </summary>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            <see cref="F:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTRESOURCEURL"/> as resourceURL.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.TimeSpan)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            <see cref="F:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.DEFAULTRESOURCEURL"/> as resourceURL.
+            </summary>
+            <param name="timeout">The length of time before the request times out.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURL.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <param name="resourceurl">The URL to use when retrieving CLDR data.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.TimeSpan,System.String)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURL.
+            </summary>
+            <param name="timeout">The length of time before the request times out.</param>
+            <param name="resourceurl">The URL to use when retrieving CLDR data.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.Int32,System.Uri)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.TimeSpan,System.Uri)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <remarks>
+            By default, the data retrieved is cached for 24 hours in the user's temporary folder retrieved from
+            <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.Int32,System.Uri,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <param name="cachettl">
+            Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+            </param>
+            <remarks>
+            The default cache directory used is retrieved from <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.TimeSpan,System.Uri,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <param name="cachettl">
+            Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+            </param>
+            <remarks>
+            The default cache directory used is retrieved from <see cref="M:System.IO.Path.GetTempPath"/>.
+            </remarks>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.Int32,System.Uri,System.TimeSpan,System.String)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <param name="cachettl">
+            Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+            </param>
+            <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
+        </member>
+        <member name="M:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.#ctor(System.TimeSpan,System.Uri,System.TimeSpan,System.String)">
+            <summary>
+            Initializes a new instance of an <see cref="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper"/> with the specified timeout and 
+            resourceURI.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <param name="resourceuri">The URI to use when retrieving CLDR data.</param>
+            <param name="cachettl">
+            Expiry time for downloaded data; unless this TTL has expired a cached version will be used.
+            </param>
+            <param name="cachedirectory">The directory to use to store a cached version of the data.</param>
+        </member>
+        <member name="T:TimeZoneMapper.TZMappers.OnlineValuesTZMapper.TimedWebClient">
+            <summary>
+            Simple "wrapper class" providing timeouts.
+            </summary>
+        </member>
+    </members>
+</doc>

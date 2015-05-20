@@ -11,6 +11,8 @@ using DevExpress.ExpressApp.Web;
 using DevExpress.Web;
 using DevExpress.ExpressApp.Web.Templates;
 using HtmlTemplateXAF.Module.Web.Controllers.Skills;
+using HtmlTemplateXAF.Module.BusinessObjects;
+using TimeZoneMapper;
 
 namespace HtmlTemplateXAF.Web
 {
@@ -44,6 +46,9 @@ namespace HtmlTemplateXAF.Web
             WebApplication.Instance.ShowViewStrategy = new SkillsShowViewStrategy(WebApplication.Instance);
             WebApplication.Instance.Setup();
             WebApplication.Instance.Start();
+
+            var mapper = TimeZoneMap.OnlineWithFallbackValuesTZMapper;
+            SkillsGlobalSettings.Instance.TimeZoneDB = mapper;
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {

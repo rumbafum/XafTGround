@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Linq;
 using DevExpress.ExpressApp.Templates;
 using DevExpress.ExpressApp.Web;
 using DevExpress.ExpressApp.Web.Templates;
@@ -27,12 +28,31 @@ public partial class Default : BaseXafPage, ICallbackFrameTemplate
 
     protected void Page_Init(object sender, EventArgs e)
     {
-        Request.RequestContext.HttpContext.Items["TESTE"] = "LALA";
         CurrentPageHelper.Request = Request;
         if (!string.IsNullOrEmpty(Page.Request["__CALLBACKPARAM"]) && Page.Request["__CALLBACKPARAM"].ToString().Contains("NTAC"))
             CurrentPageHelper.CurrentPageUrl = "";
-        Page.ClientScript.RegisterOnSubmitStatement(this.GetType(), "FillClientOffset", "Skill.Global.setClientOffset();");
-        SkillsGlobalSettings.Instance.DefaultTimeZone = TimeZoneInfo.Local;
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        CallbackManager.PreRender += new EventHandler<EventArgs>(CallbackManager_PreRender);
+
+        if (Request.Cookies.AllKeys.Contains("skillsTimezoneOffset"))
+        {
+            SkillsGlobalSettings.Instance.ClientOffset = Convert.ToInt16(Request.Cookies["skillsTimezoneOffset"].Value);
+        }
+        if (Request.Cookies.AllKeys.Contains("skillsTimezone"))
+        {
+            try
+            {
+                SkillsGlobalSettings.Instance.DefaultTimeZone =
+                    SkillsGlobalSettings.Instance.TimeZoneDB.MapTZID(Request.Cookies["skillsTimezone"].Value);
+            }
+            catch (Exception ex)
+            {
+                SkillsGlobalSettings.Instance.DefaultTimeZone = TimeZoneInfo.Local;
+            }
+        }
 
         CultureInfo[] cultures = new CultureInfo[Request.UserLanguages.Length + 1];
         for (int ctr = Request.UserLanguages.GetLowerBound(0); ctr <= Request.UserLanguages.GetUpperBound(0);
@@ -41,8 +61,6 @@ public partial class Default : BaseXafPage, ICallbackFrameTemplate
             string locale = Request.UserLanguages[ctr];
             if (!string.IsNullOrEmpty(locale))
             {
-
-                // Remove quality specifier, if present.
                 if (locale.Contains(";"))
                     locale = locale.Substring(0, locale.IndexOf(';'));
                 try
@@ -57,14 +75,9 @@ public partial class Default : BaseXafPage, ICallbackFrameTemplate
             }
         }
         cultures[Request.UserLanguages.Length] = CultureInfo.InvariantCulture;
-
         SkillsGlobalSettings.Instance.Cultures = cultures;
     }
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        CallbackManager.PreRender += new EventHandler<EventArgs>(CallbackManager_PreRender);
-    }
     private void CallbackManager_PreRender(object sender, EventArgs e)
     {
         try

@@ -19,33 +19,46 @@ namespace HtmlTemplateXAF.Module.BusinessObjects.Converters
                     bool result = false;
                     DateTimeStyles styles = DateTimeStyles.AllowInnerWhite | DateTimeStyles.AllowLeadingWhite |
                                            DateTimeStyles.AllowTrailingWhite;
-                    DateTime localDate = DateTimeOffset.UtcNow.UtcDateTime;
-                    DateTimeOffset localDateOffset;
+                    DateTimeOffset fromDB = DateTimeOffset.Now;
                     foreach (CultureInfo culture in SkillsGlobalSettings.Instance.Cultures)
                     {
-                        result = DateTime.TryParse((value as string), culture, styles, out localDate);
+                        result = DateTimeOffset.TryParse((value as string), culture, styles, out fromDB);
                         if (result) break;
                     }
                     if (result)
                     {
-                        try
-                        {
-                            localDate = DateTime.SpecifyKind(localDate, DateTimeKind.Unspecified);
-                            localDateOffset = new DateTimeOffset(localDate, new TimeSpan(0, -SkillsGlobalSettings.Instance.ClientOffset, 0));
-                            return localDateOffset;
-                        }
-                        catch (Exception)
-                        {
-                            result = false;
-                        }
+
+                        DateTime dt = TimeZoneInfo.ConvertTimeFromUtc(fromDB.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
+                        DateTimeOffset localDateOffset = new DateTimeOffset(dt, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(dt));
+                        return localDateOffset;
                     }
 
-                    //DateTimeOffset dateFromDB = DateTimeOffset.Parse((string)value);
-                    //DateTimeOffset utcFromDB = TimeZoneInfo.ConvertTime(dateFromDB, TimeZoneInfo.Utc);
-                    ////DateTime serverDT = DateTime.SpecifyKind(utcDate, DateTimeKind.Unspecified);
-                    //DateTimeOffset clientDate = new DateTimeOffset(utcFromDB.UtcDateTime, new TimeSpan(0,
-                    //    (SkillsGlobalSettings.Instance.ClientOffset == 0 ? 0 : -SkillsGlobalSettings.Instance.ClientOffset), 0));
-                    //return clientDate;
+
+                    //Working solution
+                    //bool result = false;
+                    //DateTimeStyles styles = DateTimeStyles.AllowInnerWhite | DateTimeStyles.AllowLeadingWhite |
+                    //                       DateTimeStyles.AllowTrailingWhite;
+
+                    //DateTime localDate = DateTimeOffset.UtcNow.UtcDateTime;
+                    //DateTimeOffset localDateOffset;
+                    //foreach (CultureInfo culture in SkillsGlobalSettings.Instance.Cultures)
+                    //{
+                    //    result = DateTime.TryParse((value as string), culture, styles, out localDate);
+                    //    if (result) break;
+                    //}
+                    //if (result)
+                    //{
+                    //    try
+                    //    {
+                    //        localDate = DateTime.SpecifyKind(localDate, DateTimeKind.Unspecified);
+                    //        localDateOffset = new DateTimeOffset(localDate, new TimeSpan(0, -SkillsGlobalSettings.Instance.ClientOffset, 0));
+                    //        return localDateOffset;
+                    //    }
+                    //    catch (Exception)
+                    //    {
+                    //        result = false;
+                    //    }
+                    //}
                 }
                     
                 return value;
@@ -62,7 +75,11 @@ namespace HtmlTemplateXAF.Module.BusinessObjects.Converters
             if (value is DateTimeOffset)
             {
                 DateTimeOffset dateTimeOffset = (DateTimeOffset)value;
-                return dateTimeOffset.ToString("O");
+
+                DateTime local = TimeZoneInfo.ConvertTimeFromUtc(dateTimeOffset.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
+                DateTimeOffset dto = new DateTimeOffset(local, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(local));
+
+                return dto.ToString("O");
             }
             return value;
         }

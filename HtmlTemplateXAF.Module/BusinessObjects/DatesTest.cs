@@ -48,10 +48,12 @@ namespace HtmlTemplateXAF.Module.BusinessObjects
             set { SetPropertyValue("EndDate", value); }
         }
 
-        [VisibleInListView(true), VisibleInDetailView(true)]
-        public DateTime CreateDate
+        [VisibleInListView(false), VisibleInDetailView(false)]
+        [ValueConverter(typeof(DateTimeOffsetConverter))]
+        [DbType("DateTimeOffset")]
+        public DateTimeOffset CreateDate
         {
-            get { return GetPropertyValue<DateTime>("CreateDate"); }
+            get { return GetPropertyValue<DateTimeOffset>("CreateDate"); }
             set { SetPropertyValue("CreateDate", value); }
         }
 
@@ -59,13 +61,14 @@ namespace HtmlTemplateXAF.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            BeginDate = DateTime.Now;
-            EndDate = DateTime.Now;
+            BeginDate = DateTimeOffset.Now;
+            EndDate = DateTimeOffset.Now;
         }
 
         protected override void OnSaving()
         {
             base.OnSaving();
+            CreateDate = DateTimeOffset.Now;
         }
     }
 }

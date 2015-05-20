@@ -15,8 +15,8 @@ var Skill;
         }
         Global.setGlobalSettings = setGlobalSettings;
 
-        function setClientOffset() {
-            window["RaiseXafCallback"](window["globalCallbackControl"], 'SkillsMainCallback', new Date().getTimezoneOffset(), '', false);
+        function setClientOffset(timezone) {
+            //window["RaiseXafCallback"](window["globalCallbackControl"], 'SkillsMainCallback', new Date().getTimezoneOffset(), '', false);
             //$.ajax({
             //    url: "Handlers/SetClientSettingsHandler.ashx?clientOffset=" + new Date().getTimezoneOffset(),
             //    cache: false,
