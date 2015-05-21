@@ -4,6 +4,7 @@ using DevExpress.ExpressApp.Web;
 using DevExpress.ExpressApp.Web.Editors;
 using DevExpress.Web;
 using HtmlTemplateXAF.Module.BusinessObjects;
+using HtmlTemplateXAF.Module.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,32 +33,29 @@ namespace HtmlTemplateXAF.Module.Web.Editors
             return control;
         }
 
-        private DateTimeOffset FromDateOffsetToLocalDateTime(DateTimeOffset dt)
-        {
-            DateTime local = TimeZoneInfo.ConvertTimeFromUtc(dt.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
-            DateTimeOffset localDateOffset = new DateTimeOffset(local, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(dt));
-            return localDateOffset;
-            //DateTime now = dt.UtcDateTime.AddMinutes(-SkillsGlobalSettings.Instance.ClientOffset);
+        //private DateTimeOffset FromDateOffsetToLocalDateTime(DateTimeOffset dt)
+        //{
+        //    DateTime local = TimeZoneInfo.ConvertTimeFromUtc(dt.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
+        //    DateTimeOffset localDateOffset = new DateTimeOffset(local, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(dt));
+        //    return localDateOffset;
+        //    //DateTime now = dt.UtcDateTime.AddMinutes(-SkillsGlobalSettings.Instance.ClientOffset);
 
-            //return now;
-        }
+        //    //return now;
+        //}
 
         private DateTimeOffset FromLocalDateToDateTimeOffset(DateTime dt)
         {
             DateTimeOffset dto = new DateTimeOffset(dt, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(dt));
             return dto;
-            //dt = DateTime.SpecifyKind(dt, DateTimeKind.Unspecified);
-            //DateTimeOffset localDateOffset = new DateTimeOffset(dt, new TimeSpan(0, -SkillsGlobalSettings.Instance.ClientOffset, 0));
-            //return localDateOffset;
         }
 
         private void SetupControlValues(WebControl webControl, bool inViewMode)
         {
             if (PropertyValue == null) return;
             if(inViewMode)
-                ((ASPxLabel)webControl).Text = FromDateOffsetToLocalDateTime(((DateTimeOffset)PropertyValue)).DateTime.ToString("dd/MM/yyyy");
+                ((ASPxLabel)webControl).Text = DateTimeHelper.ConvertToLocalTime(((DateTimeOffset)PropertyValue)).DateTime.ToString("dd/MM/yyyy");
             else
-                ((ASPxDateEdit)webControl).Value = FromDateOffsetToLocalDateTime(((DateTimeOffset)PropertyValue)).DateTime;
+                ((ASPxDateEdit)webControl).Value = DateTimeHelper.ConvertToLocalTime(((DateTimeOffset)PropertyValue)).DateTime;
         }
 
         protected override object GetControlValueCore()

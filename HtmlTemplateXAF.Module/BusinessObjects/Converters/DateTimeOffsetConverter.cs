@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpo.Metadata;
+using HtmlTemplateXAF.Module.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -27,9 +28,7 @@ namespace HtmlTemplateXAF.Module.BusinessObjects.Converters
                     }
                     if (result)
                     {
-
-                        DateTime dt = TimeZoneInfo.ConvertTimeFromUtc(fromDB.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
-                        DateTimeOffset localDateOffset = new DateTimeOffset(dt, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(dt));
+                        DateTimeOffset localDateOffset = DateTimeHelper.ConvertToLocalTime(fromDB);
                         return localDateOffset;
                     }
 
@@ -75,10 +74,7 @@ namespace HtmlTemplateXAF.Module.BusinessObjects.Converters
             if (value is DateTimeOffset)
             {
                 DateTimeOffset dateTimeOffset = (DateTimeOffset)value;
-
-                DateTime local = TimeZoneInfo.ConvertTimeFromUtc(dateTimeOffset.UtcDateTime, SkillsGlobalSettings.Instance.DefaultTimeZone);
-                DateTimeOffset dto = new DateTimeOffset(local, SkillsGlobalSettings.Instance.DefaultTimeZone.GetUtcOffset(local));
-
+                DateTimeOffset dto = DateTimeHelper.ConvertToLocalTime(dateTimeOffset);
                 return dto.ToString("O");
             }
             return value;
