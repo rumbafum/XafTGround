@@ -85,7 +85,7 @@ namespace HtmlTemplateXAF.Web.Handlers
                 //}
                 //else
                 //context.Response.BinaryWrite(File.ReadAllBytes(filePath)); // byte[]
-                context.Response.WriteFile(filePath);
+                context.Response.TransmitFile(filePath);
                 context.Response.End();
             }
         }
