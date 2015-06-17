@@ -71,7 +71,7 @@ namespace HtmlTemplateXAF.Web.Handlers
             if (File.Exists(filePath))
             {
                 context.Response.ContentType = GetContentTypeString(filePath);
-                context.Response.AddHeader("Content-Disposition", "inline; filename=teste");
+                context.Response.AddHeader("Content-Disposition", "attachment; filename=teste.pdf");
                 //if (IsImage(filePath))
                 //{
                 //    using(MemoryStream ms = new MemoryStream())
@@ -84,8 +84,7 @@ namespace HtmlTemplateXAF.Web.Handlers
 
                 //}
                 //else
-                //context.Response.BinaryWrite(File.ReadAllBytes(filePath)); // byte[]
-                context.Response.TransmitFile(filePath);
+                context.Response.BinaryWrite(File.ReadAllBytes(filePath)); // byte[]
                 context.Response.End();
             }
         }
