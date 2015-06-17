@@ -308,6 +308,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\FilePreviewHandler.ashx.cs">
+      <DependentUpon>FilePreviewHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\GetDataHandler.ashx.cs">
       <DependentUpon>GetDataHandler.ashx</DependentUpon>
     </Compile>
@@ -375,6 +378,8 @@
     <Content Include="packages.config" />
     <Content Include="Handlers\GetDataHandler.ashx" />
     <Content Include="Handlers\SetClientSettingsHandler.ashx" />
+    <Content Include="Handlers\FilePreviewHandler.ashx" />
+    <Content Include="Handlers\SAC_1.pdf" />
     <None Include="ReadMe.txt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
