@@ -71,7 +71,7 @@ namespace HtmlTemplateXAF.Web.Handlers
             if (File.Exists(filePath))
             {
                 context.Response.ContentType = GetContentTypeString(filePath);
-                context.Response.AddHeader("Content-Disposition", "inline");
+                context.Response.AddHeader("Content-Disposition", "attachment; filename=teste");
                 //if (IsImage(filePath))
                 //{
                 //    using(MemoryStream ms = new MemoryStream())
